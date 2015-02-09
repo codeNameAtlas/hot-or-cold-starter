@@ -59,14 +59,21 @@ newGame();
 
 	/*--- Check to see if Users Guess is valid ---*/
 		function validGuess(n) {
-			if ((n >= 1) && (n <= 100)) {
+			if (isNaN(n)) {
+				setFeedback("Opps! I only accept numbers.");
+				console.log("Opps! I only accept numbers.");
+				return true;
+			}
+			else if ((n < 1) || (n > 100)) {
+				setFeedback("Opps! I only accept numbers between 1-100.");
+				console.log("Opps! I only accept numbers between 1-100.");
+				return true;
+			}
+			else if ((n >= 1) && (n <= 100)) {
 				console.log(n);
-			}
-			else {
-				console.log(prompt("Opps! I only accept numbers between 1-100"));
-			}
+				return false;
+			};
 		}
-	var guess = prompt("Opps! I only accept numbers between 1-100");
 	
 	/*--- Check the Hot or Cold feedback ---*/
 	function userFeedback() {
