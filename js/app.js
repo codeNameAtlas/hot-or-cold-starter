@@ -76,19 +76,48 @@ newGame();
 		}
 	
 	/*--- Check the Hot or Cold feedback ---*/
-	function userFeedback() {
-	if (number == userGuess()) {
-		return number;
+	function checkGuess(guessDiff) {
+	if (guessDiff === 0) {
+		setFeedback("Awesome! You guessed it!");
+		found = true;
+		return false;
 	}
-	else if (userGuess > 50 || userGuess < 50) {
-		return ("You are Ice Cold");
+	else if (guessDiff <= 5) {
+		setFeedback("You are SO HOT!");
+		return true;
 	}
+	else if (guessDiff <= 10) {
+		setFeedback("You are getting HOT!");
+		return true;
+	}
+	else if (guessDiff > 10  && guessDiff <= 20) {
+		setFeedback("You are getting warmer!");
+		return true;
+	}
+	else if (guessDiff > 20 && guessDiff <= 30) {
+		setFeedback("You are getting colder!");
+		return true;
+	}
+	else if (guessDiff > 30 && guessDiff <= 40) {
+		setFeedback("You are near freezing!");
+		return true;
+	}
+	else {
+		setFeedback("You ARE FREEZING!!");
+		return true;
+	}
+	
 }
 
 	/*--- Set the Feedback ---*/
-
-
+	function setFeedback(feedback) {
+		$('#feedback').text(feedback);
 	}
+
+	/*I'm using a funciton called setFeedback and using 
+	jQuery to fetch the id "feedback" in css and the .text()
+	with a feeback input to display text I defined */
+
 
 	
 
